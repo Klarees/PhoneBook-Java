@@ -59,4 +59,21 @@ public class PhoneBook {
         System.out.println();
         System.out.println("Type a command or 'exit' to quit. For a list of valid commands use 'help':");
     }
+    private static void showContact(Map<String, List<String>> contacts, Scanner input) {
+        System.out.println("Enter the name you are looking for:");
+        String name = input.nextLine().trim();
+
+        if (contacts.containsKey(name)) {
+            System.out.println(name);
+            for (String number : contacts.get(name)) {
+                System.out.println(number);
+            }
+        } else {
+            System.out.println("Sorry, nothing found!");
+        }
+
+        System.out.println();
+        System.out.println("Type a command or 'exit' to quit. For a list of valid commands use 'help':");
+    }
+
 }
