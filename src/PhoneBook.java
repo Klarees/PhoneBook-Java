@@ -124,5 +124,27 @@ public class PhoneBook {
                 System.out.println("Number may contain only '+', spaces and digits. Min length 3, max length 25.");
             }
         }
+
+        if (contacts.containsKey(name)) {
+            System.out.printf("'%s' already exists in the phone book!\n", name);
+
+            if (contacts.get(name).contains(number)) {
+                System.out.printf("Number %s already available for contact '%s'.\n", number, name);
+            } else {
+                contacts.get(name).add(number);
+                saveContacts(contacts);
+                System.out.printf("Successfully added number %s for contact '%s'.\n", number, name);
+            }
+
+        } else {
+            List<String> numbers = new ArrayList<>();
+            numbers.add(number);
+            contacts.put(name, numbers);
+            saveContacts(contacts);
+            System.out.printf("Successfully added contact '%s' !\n", name);
+        }
+
+        System.out.println();
+        System.out.println("Type a command or 'exit' to quit. For a list of valid commands use 'help':");
     }
 }
