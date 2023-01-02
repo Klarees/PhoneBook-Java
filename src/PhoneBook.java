@@ -45,6 +45,17 @@ public class PhoneBook {
         }
     }
 
+    private static void listCommands() {
+        System.out.println("list - lists all saved contacts in alphabetical  order");
+        System.out.println("show - finds a contact by name");
+        System.out.println("find - searches for a contact by number");
+        System.out.println("add - saves a new contact entry into the phone book");
+        System.out.println("edit - modifies an existing contact");
+        System.out.println("delete - removes a contact from the phone book");
+        System.out.println("help - lists all valid commands");
+        System.out.println("---------------------------");
+    }
+
     private static void listContacts(Map<String, List<String>> contacts) {
         if (!contacts.isEmpty()) {
             for (Map.Entry<String, List<String>> entry : contacts.entrySet()) {
@@ -223,6 +234,7 @@ public class PhoneBook {
         System.out.println();
         System.out.println("Type a command or 'exit' to quit. For a list of valid commands use 'help':");
     }
+
     private static void deleteContact(Map<String, List<String>> contacts, Scanner input) {
         System.out.println("Enter name of the contact to be deleted:");
         String name = input.nextLine().trim();
@@ -253,5 +265,56 @@ public class PhoneBook {
 
         System.out.println();
         System.out.println("Type a command or 'exit' to quit. For a list of valid commands use 'help':");
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println("PHONE BOOK (ver 0.2)");
+        System.out.println("===========================");
+        System.out.println("Type a command or 'exit' to quit:");
+        listCommands();
+        System.out.print("> ");
+
+        Map<String, List<String>> contacts = new TreeMap<>();
+        loadContacts(contacts);
+
+        Scanner input = new Scanner(System.in);
+        String line = input.nextLine().trim();
+
+        while (!line.equals("exit")) {
+
+            switch (line) {
+                case "list":
+                    listContacts(contacts);
+                    break;
+                case "show":
+                    showContact(contacts, input);
+                    break;
+                case "find":
+                    findContact(contacts, input);
+                    break;
+                case "add":
+                    addContact(contacts, input);
+                    break;
+                case "edit":
+                    editContact(contacts, input);
+                    break;
+                case "delete":
+                    deleteContact(contacts, input);
+                    break;
+                case "help":
+                    listCommands();
+                    break;
+                default:
+                    System.out.println("Invalid command!");
+                    break;
+            }
+
+
+            System.out.print("\n> ");
+            line = input.nextLine().trim();
+        }
+
+        System.out.println("'Phone Book 0.2' terminated.");
     }
 }
