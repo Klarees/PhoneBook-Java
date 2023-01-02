@@ -21,6 +21,7 @@ public class PhoneBook {
             System.err.println(ioex.getMessage());
         }
     }
+
     private static void loadContacts(Map<String, List<String>> contacts) {
         try (BufferedReader reader = new BufferedReader(new FileReader(DATA_PATH))) {
 
@@ -43,6 +44,7 @@ public class PhoneBook {
             System.err.println("Could not load contacts, phone book is empty!");
         }
     }
+
     private static void listContacts(Map<String, List<String>> contacts) {
         if (!contacts.isEmpty()) {
             for (Map.Entry<String, List<String>> entry : contacts.entrySet()) {
@@ -59,6 +61,7 @@ public class PhoneBook {
         System.out.println();
         System.out.println("Type a command or 'exit' to quit. For a list of valid commands use 'help':");
     }
+    
     private static void showContact(Map<String, List<String>> contacts, Scanner input) {
         System.out.println("Enter the name you are looking for:");
         String name = input.nextLine().trim();
@@ -75,6 +78,7 @@ public class PhoneBook {
         System.out.println();
         System.out.println("Type a command or 'exit' to quit. For a list of valid commands use 'help':");
     }
+
     private static void findContact(Map<String, List<String>> contacts, Scanner input) {
         System.out.println("Enter a number to see to whom does it belong:");
         String number = input.nextLine().trim();
